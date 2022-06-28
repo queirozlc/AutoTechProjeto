@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="imagens">
+    <file>imagens/cadastrar.png</file>
+    <file>imagens/estoque.png</file>
+    <file>imagens/home.png</file>
+    <file>imagens/icone.png</file>
+    <file>imagens/logo.png</file>
+    <file>imagens/logo_250.png</file>
+    <file>imagens/logo_mini.png</file>
+    <file>imagens/menu.png</file>
+    <file>imagens/search.png</file>
+    <file>imagens/vendas.png</file>
+    <file>imagens/x-circle-regular-24 (1).png</file>
+    <file>imagens/x-circle-regular-24.png</file>
+  </qresource>
+</RCC>
