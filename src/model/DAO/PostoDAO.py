@@ -8,7 +8,7 @@ class PostoDAO(Connection):
     # Método para inserir posto no banco de dados
     def insert(self, *args):
         try:
-            sql = "INSERT INTO posto (nome, id_combustivel) VALUES (%s, %s)"
+            sql = "INSERT INTO posto (nome) VALUES (%s)"
             self.execute(sql, args)
             self.commit()
             print("Registro Inserido com Sucesso")
@@ -32,7 +32,7 @@ class PostoDAO(Connection):
     # Método para atualizar posto no banco de dados
     def update(self, id, *args):
         try:
-            sql = f"UPDATE posto SET nome = %s, id_combustivel = %s WHERE id = {id}"
+            sql = f"UPDATE posto SET nome = %s WHERE id = {id}"
             self.execute(sql, args)
             self.commit()
             print("Registro Atualizado")
@@ -54,22 +54,10 @@ class PostoDAO(Connection):
             if data:
                 return data
 
-            return "Registro não encontrado"
+            return None
         except Exception as e:
             print("Erro ao encontrar o registro:", e)
 
-    # Método para retornar todas as informações necessárias para venda usando as tabelas relacionadas do banco
-    def select_tabelas_relacionadas(self):
-        try:
-            sql = '''SELECT p.nome, c.descricao AS combustivel_descricao, c.quantidade AS combustivel_quantidade, c.valor AS combustivel_valor, c.observacao AS combustivel_observacao
-                    FROM posto p
-                    INNER JOIN combustivel c ON c.id = p.id_combustivel'''
-
-            return self.query(sql)
-
-        except Exception as e:
-            return "Erro ao encontrar:", e
-
 
 if __name__ == "__main__":
-    pass
+    posto = PostoDAO()

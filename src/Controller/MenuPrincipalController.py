@@ -5,7 +5,11 @@ from PySide6.QtWidgets import (QMainWindow, QMessageBox)
 from src.model.Cliente import Cliente
 from src.model.DAO.ClienteDAO import ClienteDAO
 from src.model.DAO.CombustivelDAO import CombustivelDAO
+from src.model.DAO.PostoCombustivelDAO import PostoCombustivelDAO
+from src.model.DAO.PostoDAO import PostoDAO
+from src.model.DAO.ServicoDAO import ServicoDAO
 from src.model.DAO.UsuarioDAO import UsuarioDAO
+from src.model.Servico import Servico
 from src.view.templates.Ui_MenuPrincipal import Ui_MainWindow
 
 
@@ -18,13 +22,24 @@ class MenuPrincipalController(QMainWindow, Ui_MainWindow):
         self.setWindowIcon(appIcon)
         self.__usuario_ativo = usuario_logado
         self.preencher_informacoes_usuario()
-        self.preencher_combustivel()
+        self.preencher_clientes()
+        self.preencher_posto(self.comboBoxPosto)
+        self.preencher_posto(self.comboBoxPosto_2)
+        self.comboBoxPosto_2.currentTextChanged.connect(
+            lambda: self.preencher_combustivel(self.comboBoxCombustivel, self.comboBoxPosto_2))
+        self.comboBoxPosto.currentTextChanged.connect(
+            lambda: self.preencher_combustivel(self.comboBoxCombustivel_2, self.comboBoxPosto))
+        self.comboBoxCombustivel_2.currentTextChanged.connect(lambda: self.exibir_preco_servico())
+        self.quantidadeSpinBox.valueChanged.connect(lambda: self.exibir_preco_servico())
+        self.precoSpinBox.valueChanged.connect(lambda: self.exibir_quantidade_servico())
 
         # TOGGLE BUTTONS
         self.pushButton_toggle.clicked.connect(self.show_menu)
         self.botaoCadastrarCliente.clicked.connect(self.cadastrar_cliente)
         self.btnVerEstoque.clicked.connect(self.checar_estoque)
         self.btnAbastecerEstoque.clicked.connect(self.abastecer_estoque)
+        self.buttonBuscarCliente.clicked.connect(self.buscar_cliente_pela_placa)
+        self.buttonVenda.clicked.connect(self.realizar_venda)
 
         ### Setando as páginas do sistema
         self.pushButtonHome.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
@@ -33,7 +48,7 @@ class MenuPrincipalController(QMainWindow, Ui_MainWindow):
         self.pushButtonEstoque.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_estoque))
         self.pushButtonCadastro.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_cadastrarCliente))
 
-    # métodos auxiliares
+    # MÉTODOS AUXILIARES
 
     def obter_cliente(self):
         nome = self.campoNomeCadastro.text()
@@ -45,20 +60,44 @@ class MenuPrincipalController(QMainWindow, Ui_MainWindow):
 
         return modelo_cliente
 
-    def preencher_combustivel(self):
-        # trazer todos os combustiveis do banco de dados
-        combustivel_dao = CombustivelDAO()
-        lista_combustivel = combustivel_dao.select_all()
+    def limpar_tela_cliente(self):
+        self.campoNomeCadastro.setText("")
+        self.campoTextoCPF.setText("")
+        self.campoPlacaCadastro.setText("")
 
-        # selecionar e armazenar o nome de todos os combustiveis
+    def preencher_combustivel(self, combustivel_combobox, posto_combobox):
+        lista_combustiveis = []
+        # limpar combobox de combustivel
+        combustivel_combobox.clear()
+
+        # buscar posto selecionado da view
+        posto_selecionado = posto_combobox.currentText()
+
+        # validar posto no banco de dados e retornar os dados
+        posto_combustivel_dao = PostoCombustivelDAO()
+
+        combustivel_data = posto_combustivel_dao.buscar_combustivel_por_nome(posto_selecionado)
+
+        for item in combustivel_data:
+            lista_combustiveis.append(item[0])
+
+        # retornar informação para a view
+        combustivel_combobox.addItems(lista_combustiveis)
+
+    def preencher_clientes(self):
+        # trazer todos os clientes do banco de dados
+        cliente_dao = ClienteDAO()
+        lista_clientes = cliente_dao.select_all()
+
+        # selecionar e armazenar o nome de todos os clientes
         nomes = []
 
-        for i, nome in enumerate(lista_combustivel):
+        for nome in lista_clientes:
             nomes.append(nome[1])
 
         # setar os nomes dentro do comboBox
         for item in nomes:
-            self.comboBoxCombustivel.addItem(item)
+            self.comboBoxCliente.addItem(item)
 
     def show_menu(self):
         width = self.leftMenu.width()
@@ -75,7 +114,78 @@ class MenuPrincipalController(QMainWindow, Ui_MainWindow):
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
 
-    # Metodo para home page
+    def remove_repetidos(self, lista):
+        l = []
+        for i in lista:
+            if i not in l:
+                l.append(i)
+        return l
+
+    def preencher_posto(self, element):
+        # trazer todos os postos do banco de dados
+        posto_combustivel_dao = PostoCombustivelDAO()
+
+        lista_postos = posto_combustivel_dao.select_tabelas_relacionadas()
+        lista_nomes = []
+        for item in lista_postos:
+            lista_nomes.append(item[0])
+
+        lista_nomes_filtrados = self.remove_repetidos(lista_nomes)
+        element.addItems(lista_nomes_filtrados)
+
+    def pegar_dados_para_venda(self):
+        # pegar dados da view
+
+        cliente = self.comboBoxCliente.currentText()
+        posto = self.comboBoxPosto.currentText()
+        combustivel = self.comboBoxCombustivel_2.currentText()
+        quantidade = self.quantidadeSpinBox.text()
+        preco = self.precoSpinBox.value()
+
+        servico = Servico("Abastecer", cliente, posto, combustivel, quantidade, preco)
+        return servico
+
+    def limpar_campos_servico(self):
+        self.quantidadeSpinBox.setValue(1)
+        self.precoSpinBox.setValue(0)
+
+    def exibir_preco_servico(self):
+        data = self.pegar_dados_para_venda()
+        combustivel_dao = CombustivelDAO()
+        combustivel_pesquisado = combustivel_dao.search(data.get_combustivel, type_s="descricao")
+
+        for item in combustivel_pesquisado:
+            preco_combustivel = item[3]
+
+        preco_servico = (preco_combustivel * data.get_quantidade)
+
+        preco = "{0:.2f}".format(preco_servico)
+
+        if self.quantidadeSpinBox.value() <= 1:
+            self.precoSpinBox.setMinimum(preco_combustivel)
+
+        self.precoSpinBox.setValue(float(preco))
+
+        return preco
+
+    def exibir_quantidade_servico(self):
+        data = self.pegar_dados_para_venda()
+        combustivel_dao = CombustivelDAO()
+        combustivel_pesquisado = combustivel_dao.search(data.get_combustivel, type_s="descricao")
+        preco_view = self.precoSpinBox.value()
+
+        for item in combustivel_pesquisado:
+            preco_combustivel = item[3]
+
+        quantidade_total = (preco_view / preco_combustivel)
+
+        if preco_view <= 1:
+            self.precoSpinBox.setMinimum(preco_combustivel)
+
+        self.quantidadeSpinBox.setValue(quantidade_total)
+
+    # ================== MÉTODOS PRINCIPAIS ==================
+
     def preencher_informacoes_usuario(self):
         # Pesquisa Usuário no banco de dados
         usuario_dao = UsuarioDAO()
@@ -127,6 +237,7 @@ class MenuPrincipalController(QMainWindow, Ui_MainWindow):
             cliente_dao.insert(cliente_a_cadastrar.get_nome, cliente_a_cadastrar.get_cpf,
                                cliente_a_cadastrar.get_data_nascimento, None, cliente_a_cadastrar.get_placa)
             QMessageBox.warning(QMessageBox(), "Ok!", "Cadastro Realizado com Sucesso!")
+            self.limpar_tela_cliente()
 
     # Método para checar estoque de combustivel
     def checar_estoque(self):
@@ -182,3 +293,85 @@ class MenuPrincipalController(QMainWindow, Ui_MainWindow):
             else:
                 QMessageBox.warning(QMessageBox(), "Ok !", "O Estoque Foi Abastecido com Sucesso !")
                 combustivel_dao.update(combustivel_id, nome, quantidade, valor, observacao)
+
+    # Método para buscar cliente pela placa do carro
+
+    def buscar_cliente_pela_placa(self):
+        # buscar placa da view
+        placa = self.placaText.text()
+
+        # consultar e validar placa no banco de dados
+        if placa != "" or placa is not None:
+            cliente_dao = ClienteDAO()
+            cliente_pesquisado = cliente_dao.search(placa, type_s="placa")
+
+            # retornar informações do cliente ou erro para view de acordo com a placa
+            if cliente_pesquisado is not None:
+                for item in cliente_pesquisado:
+                    nome_cliente = item[1]
+                self.clienteText.setText(nome_cliente)
+            else:
+                QMessageBox.warning(QMessageBox(), "Erro !", "Não existe nenhum cliente com a placa informada !")
+
+    # Método para realizar venda
+    def realizar_venda(self):
+        # pegar dados da view
+        data = self.pegar_dados_para_venda()
+        if data is not None:
+            if data.get_cliente == '' or data.get_cliente is None or data.get_posto == '' or data.get_posto is None or data.get_combustivel == '' or data.get_combustivel is None or data.get_quantidade is None or data.get_valor is None or data.get_valor == 0:
+                QMessageBox.warning(QMessageBox(), "Erro !", "Preencha Todos Os Campos !")
+            else:
+                # validar os dados existem usando o banco de dados
+                cliente_modelo = data.get_cliente
+                posto_modelo = data.get_posto
+                combustivel_modelo = data.get_combustivel
+
+                cliente_dao = ClienteDAO()
+                cliente_pesquisado = cliente_dao.search(cliente_modelo, type_s="nome")
+
+                for item in cliente_pesquisado:
+                    id_cliente = item[0]
+
+                posto_combustivel_dao = PostoCombustivelDAO()
+                posto_pesquisado = posto_combustivel_dao.search(posto_modelo, combustivel_modelo,
+                                                                type_s="nome_combustivel")
+
+                if cliente_pesquisado is not None and posto_pesquisado is not None:
+                    for item in posto_pesquisado:
+                        id_posto_objeto = item[0]
+                        id_combustivel_objeto = item[2]
+                        quantidade = item[4]
+
+                    pesquisa_produto_servico = posto_combustivel_dao.search(id_posto_objeto, id_combustivel_objeto, type_s='id_posto_combustivel')
+
+                    for item in pesquisa_produto_servico:
+                        id_posto_servico = item[0]
+                        id_combustivel_servico = item[2]
+
+                    # Verifica se a quantidade digitada pelo cliente é maior que a quantidade informada pelo banco de dados, se não for, realiza a venda
+                    if data.get_quantidade > quantidade:
+                        QMessageBox.warning(QMessageBox(), "Erro !",
+                                            "Infelizmente Não Temos essa Quantidade em Estoque !")
+                    else:
+                        # Atualiza quantidade do banco de dados conforme a quantidade vendida
+                        combustivel_dao = CombustivelDAO()
+                        combustivel_pesquisado = combustivel_dao.search(data.get_combustivel, type_s="descricao")
+
+                        for item in combustivel_pesquisado:
+                            id_combustivel = item[0]
+                            nome_combustivel = item[1]
+                            preco_combustivel = item[3]
+
+                        quantidade_atualizada = (quantidade - data.get_quantidade)
+                        combustivel_dao.update(id_combustivel, nome_combustivel, quantidade_atualizada,
+                                               preco_combustivel, None)
+
+                        preco_servico = self.exibir_preco_servico()
+                        servico_dao = ServicoDAO()
+                        servico_dao.insert(data.get_descricao, data.get_quantidade, preco_servico, None, id_cliente,
+                                           id_posto_servico)
+                        QMessageBox.warning(QMessageBox(), "Sucesso !", "Venda Realizada com Sucesso! Volte Sempre !")
+                        self.limpar_campos_servico()
+
+                else:
+                    print(f"Erro:", {data})

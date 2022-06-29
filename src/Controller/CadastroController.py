@@ -14,7 +14,6 @@ class CadastroController(QMainWindow, Ui_MainWindow):
         self.setWindowTitle("AutoTech - Cadastro")
         appIcon = QIcon(u"")
         self.setWindowIcon(appIcon)
-
         # Toggle Buttons
         self.frame_error.hide()
         self.pushButton_login.clicked.connect(self.levar_para_tela_login)
@@ -49,7 +48,6 @@ class CadastroController(QMainWindow, Ui_MainWindow):
         senha = usuario.get_senha
         data_nascimento = usuario.get_data_nascimento
 
-
         # validar os dados
         if nome != "" and nome is not None and cpf != "" and cpf is not None and senha != "" and senha is not None and data_nascimento != "" and data_nascimento is not None:
             # verificar se ja existe no banco de dados
@@ -64,8 +62,10 @@ class CadastroController(QMainWindow, Ui_MainWindow):
             else:
                 usuario_cadastrado.insert(usuario.get_nome, usuario.get_cpf, usuario.get_senha,
                                           usuario.get_data_nascimento, None, usuario.get_nivel_acesso)
-                self.w = MenuPrincipalController()
+                self.usuario_logado = cpf
+                self.w = MenuPrincipalController(self.usuario_logado)
                 self.w.show()
+                self.close()
 
         elif usuario.get_nome == '' or usuario.get_nome is None:
             self.exibe_mensagem("Preencha o Campo Nome!")

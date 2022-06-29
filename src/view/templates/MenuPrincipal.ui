@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1200</width>
-    <height>803</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -460,7 +460,7 @@ font: 12pt &quot;Gilroy-Medium&quot;;</string>
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>3</number>
+             <number>4</number>
             </property>
             <widget class="QWidget" name="pg_home">
              <layout class="QVBoxLayout" name="verticalLayout_14">
@@ -945,13 +945,19 @@ border: 1px solid #D9D9D9;</string>
                       </property>
                       <property name="maximumDateTime">
                        <datetime>
-                        <hour>8</hour>
+                        <hour>23</hour>
                         <minute>59</minute>
                         <second>59</second>
                         <year>2023</year>
                         <month>1</month>
                         <day>1</day>
                        </datetime>
+                      </property>
+                      <property name="currentSection">
+                       <enum>QDateTimeEdit::MonthSection</enum>
+                      </property>
+                      <property name="displayFormat">
+                       <string>dd/MM/yyyy</string>
                       </property>
                       <property name="calendarPopup">
                        <bool>true</bool>
@@ -1093,6 +1099,52 @@ QPushButton:hover{
             </widget>
             <widget class="QWidget" name="pg_estoque">
              <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <widget class="QFrame" name="campoPosto_2">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_23">
+                 <item>
+                  <widget class="QLabel" name="postoTitulo_2">
+                   <property name="styleSheet">
+                    <string notr="true">QLabel{
+	color:#FF915D;
+	font: 16pt &quot;Gilroy-SemiBold&quot;;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Posto:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboBoxPosto_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font: 12pt &quot;Gilroy-Medium&quot;;
+border: 1px solid #FF915D;
+color: #D9D9D9;</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
               <item>
                <widget class="QFrame" name="campoCombustivel">
                 <property name="cursor">
@@ -1262,42 +1314,6 @@ border: 1px solid #D9D9D9;</string>
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QPushButton" name="btnVerEstoque">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>280</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="cursor">
-                    <cursorShape>PointingHandCursor</cursorShape>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton{
-	background-color: transparent;
-	border: 2px solid #FFBD59;
-	border-radius: 25px;
-	color: #FFBD59;
-	font: 14pt &quot;Gilroy-Bold&quot;;
-}
-
-QPushButton:hover{
-	background-color: #FFBD59;
-	color: #170900;
-}</string>
-                   </property>
-                   <property name="text">
-                    <string>Ver Estoque</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
                   <widget class="QPushButton" name="btnAbastecerEstoque">
                    <property name="minimumSize">
                     <size>
@@ -1333,6 +1349,42 @@ QPushButton:hover{
                    </property>
                   </widget>
                  </item>
+                 <item>
+                  <widget class="QPushButton" name="btnVerEstoque">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>280</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: transparent;
+	border: 2px solid #FFBD59;
+	border-radius: 25px;
+	color: #FFBD59;
+	font: 14pt &quot;Gilroy-Bold&quot;;
+}
+
+QPushButton:hover{
+	background-color: #FFBD59;
+	color: #170900;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Ver Estoque</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
               </item>
@@ -1341,84 +1393,6 @@ QPushButton:hover{
             <widget class="QWidget" name="pg_buscarPlaca">
              <layout class="QVBoxLayout" name="verticalLayout_11">
               <item>
-               <widget class="QFrame" name="campoCliente">
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_13">
-                 <property name="spacing">
-                  <number>10</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="clienteTitulo">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel{
-	color:#FF915D;
-	font: 16pt &quot;Gilroy-SemiBold&quot;;
-}</string>
-                   </property>
-                   <property name="text">
-                    <string>Cliente:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboBoxCliente">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">font: 12pt &quot;Gilroy-Medium&quot;;
-border: 1px solid #FF915D;
-color: #D9D9D9;</string>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Gabriel Magalhães</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>William Arão</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Neymar Junior</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Gabriel Barbosa</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
                <widget class="QFrame" name="campoPlaca_2">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -1426,7 +1400,7 @@ color: #D9D9D9;</string>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
                  <property name="spacing">
                   <number>10</number>
                  </property>
@@ -1481,7 +1455,80 @@ QLineEdit::focus{
                     <number>7</number>
                    </property>
                    <property name="alignment">
+                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="campoCliente">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="clienteTitulo">
+                   <property name="styleSheet">
+                    <string notr="true">QLabel{
+	color:#FF915D;
+	font: 16pt &quot;Gilroy-SemiBold&quot;;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Cliente:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="clienteText">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QLineEdit {
+	font: 12pt &quot;Gilroy-Medium&quot;;
+	background-color: transparent;
+	color: #AAAAAA;
+	background-color: #170900;
+	border:1px solid #A6A6A6;
+}
+
+QLineEdit:hover{
+	border:1px solid #DADADA;
+}
+
+QLineEdit::focus{
+	border: 2px solid #FFBD59;
+}</string>
+                   </property>
+                   <property name="maxLength">
+                    <number>80</number>
+                   </property>
+                   <property name="alignment">
                     <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -1578,7 +1625,7 @@ QPushButton:hover{
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboBoxCliente_2">
+                  <widget class="QComboBox" name="comboBoxCliente">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -1596,104 +1643,6 @@ QPushButton:hover{
 border: 1px solid #FF915D;
 color: #D9D9D9;</string>
                    </property>
-                   <item>
-                    <property name="text">
-                     <string>Gabriel Magalhães</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>William Arão</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Neymar Junior</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Gabriel Barbosa</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="campoCombustivel_2">
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_16">
-                 <property name="spacing">
-                  <number>10</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="combustivelTitulo_2">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel{
-	color:#FF915D;
-	font: 16pt &quot;Gilroy-SemiBold&quot;;
-}</string>
-                   </property>
-                   <property name="text">
-                    <string>Combustivel:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboBoxCombustivel_2">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">font: 12pt &quot;Gilroy-Medium&quot;;
-border: 1px solid #FF915D;
-color: #D9D9D9;</string>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Gasolina Aditivada</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Gasolina</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Álcool</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Diesel</string>
-                    </property>
-                   </item>
                   </widget>
                  </item>
                 </layout>
@@ -1707,7 +1656,7 @@ color: #D9D9D9;</string>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                <layout class="QHBoxLayout" name="horizontalLayout_16">
                  <property name="spacing">
                   <number>10</number>
                  </property>
@@ -1752,21 +1701,64 @@ color: #D9D9D9;</string>
 border: 1px solid #FF915D;
 color: #D9D9D9;</string>
                    </property>
-                   <item>
-                    <property name="text">
-                     <string>Petrobras</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Posto Ipiranga</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Posto Shell</string>
-                    </property>
-                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="campoCombustivel_2">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="combustivelTitulo_2">
+                   <property name="styleSheet">
+                    <string notr="true">QLabel{
+	color:#FF915D;
+	font: 16pt &quot;Gilroy-SemiBold&quot;;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Combustivel:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboBoxCombustivel_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font: 12pt &quot;Gilroy-Medium&quot;;
+border: 1px solid #FF915D;
+color: #D9D9D9;</string>
+                   </property>
                   </widget>
                  </item>
                 </layout>
@@ -1807,7 +1799,13 @@ color: #D9D9D9;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textQuantidade">
+                  <widget class="QDoubleSpinBox" name="quantidadeSpinBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1815,30 +1813,21 @@ color: #D9D9D9;</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QLineEdit {
-	font: 12pt &quot;Gilroy-Medium&quot;;
-	background-color: transparent;
-	color: #AAAAAA;
-	background-color: #170900;
-	border:1px solid #A6A6A6;
-}
-
-QLineEdit:hover{
-	border:1px solid #DADADA;
-}
-
-QLineEdit::focus{
-	border: 2px solid #FFBD59;
-}</string>
-                   </property>
-                   <property name="maxLength">
-                    <number>5</number>
+                    <string notr="true">font: 12pt &quot;Gilroy-Medium&quot;;
+color: #D9D9D9;
+border: 1px solid #D9D9D9;</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
                    </property>
-                   <property name="placeholderText">
-                    <string>0</string>
+                   <property name="minimum">
+                    <double>1.000000000000000</double>
+                   </property>
+                   <property name="maximum">
+                    <double>50000.000000000000000</double>
+                   </property>
+                   <property name="stepType">
+                    <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                    </property>
                   </widget>
                  </item>
@@ -1893,7 +1882,26 @@ QLineEdit::focus{
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textPreco">
+                  <widget class="QLabel" name="textReais">
+                   <property name="styleSheet">
+                    <string notr="true">QLabel{
+	color:#FF915D;
+	font: 11pt &quot;Gilroy-SemiBold&quot;;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>R$</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QDoubleSpinBox" name="precoSpinBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1901,30 +1909,18 @@ QLineEdit::focus{
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QLineEdit {
-	font: 12pt &quot;Gilroy-Medium&quot;;
-	background-color: transparent;
-	color: #AAAAAA;
-	background-color: #170900;
-	border:1px solid #A6A6A6;
-}
-
-QLineEdit:hover{
-	border:1px solid #DADADA;
-}
-
-QLineEdit::focus{
-	border: 2px solid #FFBD59;
-}</string>
-                   </property>
-                   <property name="text">
-                    <string/>
+                    <string notr="true">font: 12pt &quot;Gilroy-Medium&quot;;
+color: #D9D9D9;
+border: 1px solid #D9D9D9;</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
                    </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
+                   <property name="maximum">
+                    <double>200000.000000000000000</double>
+                   </property>
+                   <property name="stepType">
+                    <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                    </property>
                   </widget>
                  </item>

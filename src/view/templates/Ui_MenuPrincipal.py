@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MenuPrincipalTWHuJc.ui'
+## Form generated from reading UI file 'MenuPrincipalakhwZX.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.3.1
 ##
@@ -15,17 +15,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QDoubleSpinBox,
-    QFrame, QHBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QSizePolicy, QStackedWidget,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDateEdit,
+    QDateTimeEdit, QDoubleSpinBox, QFrame, QHBoxLayout,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1200, 803)
+        MainWindow.resize(1200, 800)
         MainWindow.setMinimumSize(QSize(1200, 800))
         MainWindow.setStyleSheet(u"background-color:#170900;")
         self.centralwidget = QWidget(MainWindow)
@@ -529,7 +529,8 @@ class Ui_MainWindow(object):
 "color: #D9D9D9;\n"
 "border: 1px solid #D9D9D9;")
         self.dataText.setReadOnly(False)
-        self.dataText.setMaximumDateTime(QDateTime(QDate(2023, 1, 1), QTime(8, 59, 59)))
+        self.dataText.setMaximumDateTime(QDateTime(QDate(2023, 1, 1), QTime(23, 59, 59)))
+        self.dataText.setCurrentSection(QDateTimeEdit.MonthSection)
         self.dataText.setCalendarPopup(True)
 
         self.horizontalLayout_7.addWidget(self.dataText)
@@ -618,6 +619,35 @@ class Ui_MainWindow(object):
         self.pg_estoque.setObjectName(u"pg_estoque")
         self.verticalLayout_10 = QVBoxLayout(self.pg_estoque)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.campoPosto_2 = QFrame(self.pg_estoque)
+        self.campoPosto_2.setObjectName(u"campoPosto_2")
+        self.campoPosto_2.setFrameShape(QFrame.StyledPanel)
+        self.campoPosto_2.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_23 = QHBoxLayout(self.campoPosto_2)
+        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
+        self.postoTitulo_2 = QLabel(self.campoPosto_2)
+        self.postoTitulo_2.setObjectName(u"postoTitulo_2")
+        self.postoTitulo_2.setStyleSheet(u"QLabel{\n"
+"	color:#FF915D;\n"
+"	font: 16pt \"Gilroy-SemiBold\";\n"
+"}")
+
+        self.horizontalLayout_23.addWidget(self.postoTitulo_2)
+
+        self.comboBoxPosto_2 = QComboBox(self.campoPosto_2)
+        self.comboBoxPosto_2.setObjectName(u"comboBoxPosto_2")
+        sizePolicy2.setHeightForWidth(self.comboBoxPosto_2.sizePolicy().hasHeightForWidth())
+        self.comboBoxPosto_2.setSizePolicy(sizePolicy2)
+        self.comboBoxPosto_2.setMinimumSize(QSize(0, 40))
+        self.comboBoxPosto_2.setStyleSheet(u"font: 12pt \"Gilroy-Medium\";\n"
+"border: 1px solid #FF915D;\n"
+"color: #D9D9D9;")
+
+        self.horizontalLayout_23.addWidget(self.comboBoxPosto_2)
+
+
+        self.verticalLayout_10.addWidget(self.campoPosto_2)
+
         self.campoCombustivel = QFrame(self.pg_estoque)
         self.campoCombustivel.setObjectName(u"campoCombustivel")
         self.campoCombustivel.setCursor(QCursor(Qt.ArrowCursor))
@@ -700,26 +730,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.setSpacing(0)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.btnVerEstoque = QPushButton(self.btnContainer)
-        self.btnVerEstoque.setObjectName(u"btnVerEstoque")
-        self.btnVerEstoque.setMinimumSize(QSize(0, 50))
-        self.btnVerEstoque.setMaximumSize(QSize(280, 16777215))
-        self.btnVerEstoque.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btnVerEstoque.setStyleSheet(u"QPushButton{\n"
-"	background-color: transparent;\n"
-"	border: 2px solid #FFBD59;\n"
-"	border-radius: 25px;\n"
-"	color: #FFBD59;\n"
-"	font: 14pt \"Gilroy-Bold\";\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"	background-color: #FFBD59;\n"
-"	color: #170900;\n"
-"}")
-
-        self.horizontalLayout_9.addWidget(self.btnVerEstoque)
-
         self.btnAbastecerEstoque = QPushButton(self.btnContainer)
         self.btnAbastecerEstoque.setObjectName(u"btnAbastecerEstoque")
         self.btnAbastecerEstoque.setMinimumSize(QSize(0, 50))
@@ -740,6 +750,26 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_9.addWidget(self.btnAbastecerEstoque)
 
+        self.btnVerEstoque = QPushButton(self.btnContainer)
+        self.btnVerEstoque.setObjectName(u"btnVerEstoque")
+        self.btnVerEstoque.setMinimumSize(QSize(0, 50))
+        self.btnVerEstoque.setMaximumSize(QSize(280, 16777215))
+        self.btnVerEstoque.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnVerEstoque.setStyleSheet(u"QPushButton{\n"
+"	background-color: transparent;\n"
+"	border: 2px solid #FFBD59;\n"
+"	border-radius: 25px;\n"
+"	color: #FFBD59;\n"
+"	font: 14pt \"Gilroy-Bold\";\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color: #FFBD59;\n"
+"	color: #170900;\n"
+"}")
+
+        self.horizontalLayout_9.addWidget(self.btnVerEstoque)
+
 
         self.verticalLayout_10.addWidget(self.btnContainer)
 
@@ -748,49 +778,14 @@ class Ui_MainWindow(object):
         self.pg_buscarPlaca.setObjectName(u"pg_buscarPlaca")
         self.verticalLayout_11 = QVBoxLayout(self.pg_buscarPlaca)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.campoCliente = QFrame(self.pg_buscarPlaca)
-        self.campoCliente.setObjectName(u"campoCliente")
-        self.campoCliente.setFrameShape(QFrame.StyledPanel)
-        self.campoCliente.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_13 = QHBoxLayout(self.campoCliente)
-        self.horizontalLayout_13.setSpacing(10)
-        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
-        self.horizontalLayout_13.setContentsMargins(0, 0, -1, 0)
-        self.clienteTitulo = QLabel(self.campoCliente)
-        self.clienteTitulo.setObjectName(u"clienteTitulo")
-        self.clienteTitulo.setStyleSheet(u"QLabel{\n"
-"	color:#FF915D;\n"
-"	font: 16pt \"Gilroy-SemiBold\";\n"
-"}")
-
-        self.horizontalLayout_13.addWidget(self.clienteTitulo)
-
-        self.comboBoxCliente = QComboBox(self.campoCliente)
-        self.comboBoxCliente.addItem("")
-        self.comboBoxCliente.addItem("")
-        self.comboBoxCliente.addItem("")
-        self.comboBoxCliente.addItem("")
-        self.comboBoxCliente.setObjectName(u"comboBoxCliente")
-        sizePolicy2.setHeightForWidth(self.comboBoxCliente.sizePolicy().hasHeightForWidth())
-        self.comboBoxCliente.setSizePolicy(sizePolicy2)
-        self.comboBoxCliente.setMinimumSize(QSize(0, 40))
-        self.comboBoxCliente.setStyleSheet(u"font: 12pt \"Gilroy-Medium\";\n"
-"border: 1px solid #FF915D;\n"
-"color: #D9D9D9;")
-
-        self.horizontalLayout_13.addWidget(self.comboBoxCliente)
-
-
-        self.verticalLayout_11.addWidget(self.campoCliente)
-
         self.campoPlaca_2 = QFrame(self.pg_buscarPlaca)
         self.campoPlaca_2.setObjectName(u"campoPlaca_2")
         self.campoPlaca_2.setFrameShape(QFrame.StyledPanel)
         self.campoPlaca_2.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_14 = QHBoxLayout(self.campoPlaca_2)
-        self.horizontalLayout_14.setSpacing(10)
-        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.horizontalLayout_14.setContentsMargins(0, 0, -1, 0)
+        self.horizontalLayout_13 = QHBoxLayout(self.campoPlaca_2)
+        self.horizontalLayout_13.setSpacing(10)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalLayout_13.setContentsMargins(0, 0, -1, 0)
         self.placaTitulo_2 = QLabel(self.campoPlaca_2)
         self.placaTitulo_2.setObjectName(u"placaTitulo_2")
         self.placaTitulo_2.setStyleSheet(u"QLabel{\n"
@@ -798,7 +793,7 @@ class Ui_MainWindow(object):
 "	font: 16pt \"Gilroy-SemiBold\";\n"
 "}")
 
-        self.horizontalLayout_14.addWidget(self.placaTitulo_2)
+        self.horizontalLayout_13.addWidget(self.placaTitulo_2)
 
         self.placaText = QLineEdit(self.campoPlaca_2)
         self.placaText.setObjectName(u"placaText")
@@ -819,12 +814,56 @@ class Ui_MainWindow(object):
 "	border: 2px solid #FFBD59;\n"
 "}")
         self.placaText.setMaxLength(7)
-        self.placaText.setAlignment(Qt.AlignCenter)
+        self.placaText.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.horizontalLayout_14.addWidget(self.placaText)
+        self.horizontalLayout_13.addWidget(self.placaText)
 
 
         self.verticalLayout_11.addWidget(self.campoPlaca_2)
+
+        self.campoCliente = QFrame(self.pg_buscarPlaca)
+        self.campoCliente.setObjectName(u"campoCliente")
+        self.campoCliente.setFrameShape(QFrame.StyledPanel)
+        self.campoCliente.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_14 = QHBoxLayout(self.campoCliente)
+        self.horizontalLayout_14.setSpacing(10)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalLayout_14.setContentsMargins(0, 0, -1, 0)
+        self.clienteTitulo = QLabel(self.campoCliente)
+        self.clienteTitulo.setObjectName(u"clienteTitulo")
+        self.clienteTitulo.setStyleSheet(u"QLabel{\n"
+"	color:#FF915D;\n"
+"	font: 16pt \"Gilroy-SemiBold\";\n"
+"}")
+
+        self.horizontalLayout_14.addWidget(self.clienteTitulo)
+
+        self.clienteText = QLineEdit(self.campoCliente)
+        self.clienteText.setObjectName(u"clienteText")
+        self.clienteText.setMinimumSize(QSize(0, 40))
+        self.clienteText.setStyleSheet(u"QLineEdit {\n"
+"	font: 12pt \"Gilroy-Medium\";\n"
+"	background-color: transparent;\n"
+"	color: #AAAAAA;\n"
+"	background-color: #170900;\n"
+"	border:1px solid #A6A6A6;\n"
+"}\n"
+"\n"
+"QLineEdit:hover{\n"
+"	border:1px solid #DADADA;\n"
+"}\n"
+"\n"
+"QLineEdit::focus{\n"
+"	border: 2px solid #FFBD59;\n"
+"}")
+        self.clienteText.setMaxLength(80)
+        self.clienteText.setAlignment(Qt.AlignCenter)
+        self.clienteText.setReadOnly(True)
+
+        self.horizontalLayout_14.addWidget(self.clienteText)
+
+
+        self.verticalLayout_11.addWidget(self.campoCliente)
 
         self.buttonContainer = QFrame(self.pg_buscarPlaca)
         self.buttonContainer.setObjectName(u"buttonContainer")
@@ -877,67 +916,28 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_15.addWidget(self.clienteTitulo_2)
 
-        self.comboBoxCliente_2 = QComboBox(self.campoCliente_2)
-        self.comboBoxCliente_2.addItem("")
-        self.comboBoxCliente_2.addItem("")
-        self.comboBoxCliente_2.addItem("")
-        self.comboBoxCliente_2.addItem("")
-        self.comboBoxCliente_2.setObjectName(u"comboBoxCliente_2")
-        sizePolicy2.setHeightForWidth(self.comboBoxCliente_2.sizePolicy().hasHeightForWidth())
-        self.comboBoxCliente_2.setSizePolicy(sizePolicy2)
-        self.comboBoxCliente_2.setMinimumSize(QSize(0, 40))
-        self.comboBoxCliente_2.setStyleSheet(u"font: 12pt \"Gilroy-Medium\";\n"
+        self.comboBoxCliente = QComboBox(self.campoCliente_2)
+        self.comboBoxCliente.setObjectName(u"comboBoxCliente")
+        sizePolicy2.setHeightForWidth(self.comboBoxCliente.sizePolicy().hasHeightForWidth())
+        self.comboBoxCliente.setSizePolicy(sizePolicy2)
+        self.comboBoxCliente.setMinimumSize(QSize(0, 40))
+        self.comboBoxCliente.setStyleSheet(u"font: 12pt \"Gilroy-Medium\";\n"
 "border: 1px solid #FF915D;\n"
 "color: #D9D9D9;")
 
-        self.horizontalLayout_15.addWidget(self.comboBoxCliente_2)
+        self.horizontalLayout_15.addWidget(self.comboBoxCliente)
 
 
         self.verticalLayout_12.addWidget(self.campoCliente_2)
-
-        self.campoCombustivel_2 = QFrame(self.pg_vendas)
-        self.campoCombustivel_2.setObjectName(u"campoCombustivel_2")
-        self.campoCombustivel_2.setFrameShape(QFrame.StyledPanel)
-        self.campoCombustivel_2.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_16 = QHBoxLayout(self.campoCombustivel_2)
-        self.horizontalLayout_16.setSpacing(10)
-        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
-        self.horizontalLayout_16.setContentsMargins(0, 0, -1, 0)
-        self.combustivelTitulo_2 = QLabel(self.campoCombustivel_2)
-        self.combustivelTitulo_2.setObjectName(u"combustivelTitulo_2")
-        self.combustivelTitulo_2.setStyleSheet(u"QLabel{\n"
-"	color:#FF915D;\n"
-"	font: 16pt \"Gilroy-SemiBold\";\n"
-"}")
-
-        self.horizontalLayout_16.addWidget(self.combustivelTitulo_2)
-
-        self.comboBoxCombustivel_2 = QComboBox(self.campoCombustivel_2)
-        self.comboBoxCombustivel_2.addItem("")
-        self.comboBoxCombustivel_2.addItem("")
-        self.comboBoxCombustivel_2.addItem("")
-        self.comboBoxCombustivel_2.addItem("")
-        self.comboBoxCombustivel_2.setObjectName(u"comboBoxCombustivel_2")
-        sizePolicy2.setHeightForWidth(self.comboBoxCombustivel_2.sizePolicy().hasHeightForWidth())
-        self.comboBoxCombustivel_2.setSizePolicy(sizePolicy2)
-        self.comboBoxCombustivel_2.setMinimumSize(QSize(0, 40))
-        self.comboBoxCombustivel_2.setStyleSheet(u"font: 12pt \"Gilroy-Medium\";\n"
-"border: 1px solid #FF915D;\n"
-"color: #D9D9D9;")
-
-        self.horizontalLayout_16.addWidget(self.comboBoxCombustivel_2)
-
-
-        self.verticalLayout_12.addWidget(self.campoCombustivel_2)
 
         self.campoPosto = QFrame(self.pg_vendas)
         self.campoPosto.setObjectName(u"campoPosto")
         self.campoPosto.setFrameShape(QFrame.StyledPanel)
         self.campoPosto.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_17 = QHBoxLayout(self.campoPosto)
-        self.horizontalLayout_17.setSpacing(10)
-        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
-        self.horizontalLayout_17.setContentsMargins(0, 0, -1, 0)
+        self.horizontalLayout_16 = QHBoxLayout(self.campoPosto)
+        self.horizontalLayout_16.setSpacing(10)
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.horizontalLayout_16.setContentsMargins(0, 0, -1, 0)
         self.postoTitulo = QLabel(self.campoPosto)
         self.postoTitulo.setObjectName(u"postoTitulo")
         self.postoTitulo.setStyleSheet(u"QLabel{\n"
@@ -945,12 +945,9 @@ class Ui_MainWindow(object):
 "	font: 16pt \"Gilroy-SemiBold\";\n"
 "}")
 
-        self.horizontalLayout_17.addWidget(self.postoTitulo)
+        self.horizontalLayout_16.addWidget(self.postoTitulo)
 
         self.comboBoxPosto = QComboBox(self.campoPosto)
-        self.comboBoxPosto.addItem("")
-        self.comboBoxPosto.addItem("")
-        self.comboBoxPosto.addItem("")
         self.comboBoxPosto.setObjectName(u"comboBoxPosto")
         sizePolicy2.setHeightForWidth(self.comboBoxPosto.sizePolicy().hasHeightForWidth())
         self.comboBoxPosto.setSizePolicy(sizePolicy2)
@@ -959,10 +956,41 @@ class Ui_MainWindow(object):
 "border: 1px solid #FF915D;\n"
 "color: #D9D9D9;")
 
-        self.horizontalLayout_17.addWidget(self.comboBoxPosto)
+        self.horizontalLayout_16.addWidget(self.comboBoxPosto)
 
 
         self.verticalLayout_12.addWidget(self.campoPosto)
+
+        self.campoCombustivel_2 = QFrame(self.pg_vendas)
+        self.campoCombustivel_2.setObjectName(u"campoCombustivel_2")
+        self.campoCombustivel_2.setFrameShape(QFrame.StyledPanel)
+        self.campoCombustivel_2.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_17 = QHBoxLayout(self.campoCombustivel_2)
+        self.horizontalLayout_17.setSpacing(10)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.horizontalLayout_17.setContentsMargins(0, 0, -1, 0)
+        self.combustivelTitulo_2 = QLabel(self.campoCombustivel_2)
+        self.combustivelTitulo_2.setObjectName(u"combustivelTitulo_2")
+        self.combustivelTitulo_2.setStyleSheet(u"QLabel{\n"
+"	color:#FF915D;\n"
+"	font: 16pt \"Gilroy-SemiBold\";\n"
+"}")
+
+        self.horizontalLayout_17.addWidget(self.combustivelTitulo_2)
+
+        self.comboBoxCombustivel_2 = QComboBox(self.campoCombustivel_2)
+        self.comboBoxCombustivel_2.setObjectName(u"comboBoxCombustivel_2")
+        sizePolicy2.setHeightForWidth(self.comboBoxCombustivel_2.sizePolicy().hasHeightForWidth())
+        self.comboBoxCombustivel_2.setSizePolicy(sizePolicy2)
+        self.comboBoxCombustivel_2.setMinimumSize(QSize(0, 40))
+        self.comboBoxCombustivel_2.setStyleSheet(u"font: 12pt \"Gilroy-Medium\";\n"
+"border: 1px solid #FF915D;\n"
+"color: #D9D9D9;")
+
+        self.horizontalLayout_17.addWidget(self.comboBoxCombustivel_2)
+
+
+        self.verticalLayout_12.addWidget(self.campoCombustivel_2)
 
         self.campoQuantidade_2 = QFrame(self.pg_vendas)
         self.campoQuantidade_2.setObjectName(u"campoQuantidade_2")
@@ -981,28 +1009,20 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.quantidadeTitulo_2)
 
-        self.textQuantidade = QLineEdit(self.campoQuantidade_2)
-        self.textQuantidade.setObjectName(u"textQuantidade")
-        self.textQuantidade.setMinimumSize(QSize(0, 40))
-        self.textQuantidade.setStyleSheet(u"QLineEdit {\n"
-"	font: 12pt \"Gilroy-Medium\";\n"
-"	background-color: transparent;\n"
-"	color: #AAAAAA;\n"
-"	background-color: #170900;\n"
-"	border:1px solid #A6A6A6;\n"
-"}\n"
-"\n"
-"QLineEdit:hover{\n"
-"	border:1px solid #DADADA;\n"
-"}\n"
-"\n"
-"QLineEdit::focus{\n"
-"	border: 2px solid #FFBD59;\n"
-"}")
-        self.textQuantidade.setMaxLength(5)
-        self.textQuantidade.setAlignment(Qt.AlignCenter)
+        self.quantidadeSpinBox = QDoubleSpinBox(self.campoQuantidade_2)
+        self.quantidadeSpinBox.setObjectName(u"quantidadeSpinBox")
+        sizePolicy2.setHeightForWidth(self.quantidadeSpinBox.sizePolicy().hasHeightForWidth())
+        self.quantidadeSpinBox.setSizePolicy(sizePolicy2)
+        self.quantidadeSpinBox.setMinimumSize(QSize(0, 40))
+        self.quantidadeSpinBox.setStyleSheet(u"font: 12pt \"Gilroy-Medium\";\n"
+"color: #D9D9D9;\n"
+"border: 1px solid #D9D9D9;")
+        self.quantidadeSpinBox.setAlignment(Qt.AlignCenter)
+        self.quantidadeSpinBox.setMinimum(1.000000000000000)
+        self.quantidadeSpinBox.setMaximum(50000.000000000000000)
+        self.quantidadeSpinBox.setStepType(QAbstractSpinBox.AdaptiveDecimalStepType)
 
-        self.horizontalLayout_18.addWidget(self.textQuantidade)
+        self.horizontalLayout_18.addWidget(self.quantidadeSpinBox)
 
         self.textLitros_2 = QLabel(self.campoQuantidade_2)
         self.textLitros_2.setObjectName(u"textLitros_2")
@@ -1033,28 +1053,28 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_19.addWidget(self.precoTitulo)
 
-        self.textPreco = QLineEdit(self.campoPreco)
-        self.textPreco.setObjectName(u"textPreco")
-        self.textPreco.setMinimumSize(QSize(0, 40))
-        self.textPreco.setStyleSheet(u"QLineEdit {\n"
-"	font: 12pt \"Gilroy-Medium\";\n"
-"	background-color: transparent;\n"
-"	color: #AAAAAA;\n"
-"	background-color: #170900;\n"
-"	border:1px solid #A6A6A6;\n"
-"}\n"
-"\n"
-"QLineEdit:hover{\n"
-"	border:1px solid #DADADA;\n"
-"}\n"
-"\n"
-"QLineEdit::focus{\n"
-"	border: 2px solid #FFBD59;\n"
+        self.textReais = QLabel(self.campoPreco)
+        self.textReais.setObjectName(u"textReais")
+        self.textReais.setStyleSheet(u"QLabel{\n"
+"	color:#FF915D;\n"
+"	font: 11pt \"Gilroy-SemiBold\";\n"
 "}")
-        self.textPreco.setAlignment(Qt.AlignCenter)
-        self.textPreco.setReadOnly(True)
 
-        self.horizontalLayout_19.addWidget(self.textPreco)
+        self.horizontalLayout_19.addWidget(self.textReais)
+
+        self.precoSpinBox = QDoubleSpinBox(self.campoPreco)
+        self.precoSpinBox.setObjectName(u"precoSpinBox")
+        sizePolicy2.setHeightForWidth(self.precoSpinBox.sizePolicy().hasHeightForWidth())
+        self.precoSpinBox.setSizePolicy(sizePolicy2)
+        self.precoSpinBox.setMinimumSize(QSize(0, 40))
+        self.precoSpinBox.setStyleSheet(u"font: 12pt \"Gilroy-Medium\";\n"
+"color: #D9D9D9;\n"
+"border: 1px solid #D9D9D9;")
+        self.precoSpinBox.setAlignment(Qt.AlignCenter)
+        self.precoSpinBox.setMaximum(200000.000000000000000)
+        self.precoSpinBox.setStepType(QAbstractSpinBox.AdaptiveDecimalStepType)
+
+        self.horizontalLayout_19.addWidget(self.precoSpinBox)
 
 
         self.verticalLayout_12.addWidget(self.campoPreco)
@@ -1140,43 +1160,25 @@ class Ui_MainWindow(object):
         self.nomeTitulo.setText(QCoreApplication.translate("MainWindow", u"Nome Completo:", None))
         self.cpfTitulo.setText(QCoreApplication.translate("MainWindow", u"CPF:", None))
         self.dataTitulo.setText(QCoreApplication.translate("MainWindow", u"Data Nascimento:", None))
+        self.dataText.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy", None))
         self.placaTitulo.setText(QCoreApplication.translate("MainWindow", u"Placa:", None))
         self.botaoCadastrarCliente.setText(QCoreApplication.translate("MainWindow", u"CadastrarCliente", None))
+        self.postoTitulo_2.setText(QCoreApplication.translate("MainWindow", u"Posto:", None))
         self.combustivelTitulo.setText(QCoreApplication.translate("MainWindow", u"Combustivel:", None))
         self.quantidadeTitulo.setText(QCoreApplication.translate("MainWindow", u"Quantidade:", None))
         self.textLitros.setText(QCoreApplication.translate("MainWindow", u"Litros", None))
-        self.btnVerEstoque.setText(QCoreApplication.translate("MainWindow", u"Ver Estoque", None))
         self.btnAbastecerEstoque.setText(QCoreApplication.translate("MainWindow", u"Abastecer Estoque", None))
-        self.clienteTitulo.setText(QCoreApplication.translate("MainWindow", u"Cliente:", None))
-        self.comboBoxCliente.setItemText(0, QCoreApplication.translate("MainWindow", u"Gabriel Magalh\u00e3es", None))
-        self.comboBoxCliente.setItemText(1, QCoreApplication.translate("MainWindow", u"William Ar\u00e3o", None))
-        self.comboBoxCliente.setItemText(2, QCoreApplication.translate("MainWindow", u"Neymar Junior", None))
-        self.comboBoxCliente.setItemText(3, QCoreApplication.translate("MainWindow", u"Gabriel Barbosa", None))
-
+        self.btnVerEstoque.setText(QCoreApplication.translate("MainWindow", u"Ver Estoque", None))
         self.placaTitulo_2.setText(QCoreApplication.translate("MainWindow", u"Placa:", None))
+        self.clienteTitulo.setText(QCoreApplication.translate("MainWindow", u"Cliente:", None))
         self.buttonBuscarCliente.setText(QCoreApplication.translate("MainWindow", u"Buscar Cliente", None))
         self.clienteTitulo_2.setText(QCoreApplication.translate("MainWindow", u"Cliente:", None))
-        self.comboBoxCliente_2.setItemText(0, QCoreApplication.translate("MainWindow", u"Gabriel Magalh\u00e3es", None))
-        self.comboBoxCliente_2.setItemText(1, QCoreApplication.translate("MainWindow", u"William Ar\u00e3o", None))
-        self.comboBoxCliente_2.setItemText(2, QCoreApplication.translate("MainWindow", u"Neymar Junior", None))
-        self.comboBoxCliente_2.setItemText(3, QCoreApplication.translate("MainWindow", u"Gabriel Barbosa", None))
-
-        self.combustivelTitulo_2.setText(QCoreApplication.translate("MainWindow", u"Combustivel:", None))
-        self.comboBoxCombustivel_2.setItemText(0, QCoreApplication.translate("MainWindow", u"Gasolina Aditivada", None))
-        self.comboBoxCombustivel_2.setItemText(1, QCoreApplication.translate("MainWindow", u"Gasolina", None))
-        self.comboBoxCombustivel_2.setItemText(2, QCoreApplication.translate("MainWindow", u"\u00c1lcool", None))
-        self.comboBoxCombustivel_2.setItemText(3, QCoreApplication.translate("MainWindow", u"Diesel", None))
-
         self.postoTitulo.setText(QCoreApplication.translate("MainWindow", u"Posto:", None))
-        self.comboBoxPosto.setItemText(0, QCoreApplication.translate("MainWindow", u"Petrobras", None))
-        self.comboBoxPosto.setItemText(1, QCoreApplication.translate("MainWindow", u"Posto Ipiranga", None))
-        self.comboBoxPosto.setItemText(2, QCoreApplication.translate("MainWindow", u"Posto Shell", None))
-
+        self.combustivelTitulo_2.setText(QCoreApplication.translate("MainWindow", u"Combustivel:", None))
         self.quantidadeTitulo_2.setText(QCoreApplication.translate("MainWindow", u"Quantidade:", None))
-        self.textQuantidade.setPlaceholderText(QCoreApplication.translate("MainWindow", u"0", None))
         self.textLitros_2.setText(QCoreApplication.translate("MainWindow", u"Litros", None))
         self.precoTitulo.setText(QCoreApplication.translate("MainWindow", u"Pre\u00e7o:", None))
-        self.textPreco.setText("")
+        self.textReais.setText(QCoreApplication.translate("MainWindow", u"R$", None))
         self.buttonVenda.setText(QCoreApplication.translate("MainWindow", u"Realizar Venda", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"AutoTech - All Rights Reserved", None))
     # retranslateUi

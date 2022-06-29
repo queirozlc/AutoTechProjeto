@@ -61,3 +61,5 @@ class CombustivelDAO(Connection):
 
 if __name__ == "__main__":
     combustivel = CombustivelDAO()
+
+    print(combustivel.select_all())

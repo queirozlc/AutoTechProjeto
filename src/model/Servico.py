@@ -2,13 +2,14 @@ from src.model.Posto import Posto
 
 
 class Servico:
-    def __init__(self, descricao, cliente, posto, quantidade):
+    def __init__(self, descricao, cliente, posto, combustivel, quantidade, valor):
         self.__id = None
         self.__descricao = descricao
         self.__cliente = cliente
         self.__posto = posto
-        self.__valor = 0
+        self.__combustivel = combustivel
         self.__quantidade = quantidade
+        self.__valor = valor
 
     @property
     def get_id(self):
@@ -38,43 +39,47 @@ class Servico:
 
     @property
     def get_cliente(self):
-        lista_cliente = []
-        if type(self.__cliente) is list:
-            for item in self.__cliente:
-                if type(item) == tuple:
-                    lista_cliente.append(item)
-            return lista_cliente
+        if type(self.__cliente) is str:
+            return self.__cliente
         else:
             return None
 
     def set_cliente(self, cliente):
-        if type(cliente) is tuple:
-            self.__cliente.append(cliente)
+        if type(cliente) is str:
+            self.__cliente = cliente
         else:
             return None
 
     @property
     def get_posto(self):
-        lista_posto = []
-        if type(self.__posto) is list:
-            for item in self.__posto:
-                if type(item) == Posto:
-                    lista_posto.append(item)
-            return lista_posto
+        if type(self.__posto) is str:
+            return self.__posto
         else:
             return None
 
     def set_posto(self, posto):
-        if type(posto) is Posto:
-            self.__posto.append(posto)
+        if type(posto) is str:
+            self.__posto = posto
+        else:
+            return None
+
+    @property
+    def get_combustivel(self):
+        if type(self.__combustivel) is str:
+            return self.__combustivel
+        else:
+            return None
+
+    def set_combustivel(self, combustivel):
+        if type(combustivel) is str:
+            self.__combustivel = combustivel
         else:
             return None
 
     @property
     def get_valor(self):
         if type(self.__valor) is float:
-            valor_total = (self.__valor * self.get_posto().get_combustivel().get_valor())
-            return valor_total
+            return self.__valor
         else:
             return None
 
@@ -86,8 +91,8 @@ class Servico:
 
     @property
     def get_quantidade(self):
-        if type(self.__quantidade) is float:
-            return self.__quantidade
+        if type(self.__quantidade) is str and self.__quantidade != '':
+            return float(self.__quantidade)
         else:
             return None
 

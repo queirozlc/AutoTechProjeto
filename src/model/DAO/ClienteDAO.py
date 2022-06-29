@@ -47,6 +47,9 @@ class ClienteDAO(Connection):
         elif type_s == "placa":
             sql = "SELECT * FROM cliente WHERE placa LIKE %s"
 
+        elif type_s == "nome":
+            sql = "SELECT * FROM cliente WHERE nome LIKE %s"
+
         data = self.query(sql, args)
         if data:
             return data
@@ -56,3 +59,5 @@ class ClienteDAO(Connection):
 
 if __name__ == "__main__":
     cliente = ClienteDAO()
+
+    cliente.delete(9)
